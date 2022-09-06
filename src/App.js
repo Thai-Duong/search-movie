@@ -1,5 +1,4 @@
 import "./App.css";
-import { Fragment } from "react";
 import "swiper/css";
 import { Route, Routes } from "react-router";
 import Main from "./component/layout/Main";

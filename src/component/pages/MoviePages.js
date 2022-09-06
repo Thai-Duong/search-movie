@@ -1,26 +1,57 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 import { fetcher } from "../../configure";
-import MovieCard from "../movie/MovieCard";
-import MovieList from "../movie/MovieList";
-
+import MovieCard, { MovieCardSkeleton } from "../movie/MovieCard";
+import useDebounce from "../hook/useDebounce";
+import ReactPaginate from "react-paginate";
+import { v4 } from "uuid";
+const itemsPerPage = 20;
 const MoviePages = () => {
-  const { data } = useSWR(
-    `https://api.themoviedb.org/3/movie/popular?api_key=6696edaaf6da24b96f29b53d1d64419d`,
-    fetcher
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
+  const [search, setSearch] = useState("");
+  const [nextPage, setNextPage] = useState(1);
+  const [url, setUrl] = useState(
+    `https://api.themoviedb.org/3/movie/popular?api_key=6696edaaf6da24b96f29b53d1d64419d&page=${nextPage}`
   );
+  const searchDebounce = useDebounce(search, 500);
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+  const { data, error } = useSWR(url, fetcher);
   const movies = data?.results || [];
-
+  const loading = !data && !error;
+  useEffect(() => {
+    if (searchDebounce) {
+      setUrl(
+        `https://api.themoviedb.org/3/search/movie?api_key=6696edaaf6da24b96f29b53d1d64419d&query=${searchDebounce}&page=${nextPage}`
+      );
+    } else {
+      setUrl(
+        `https://api.themoviedb.org/3/movie/popular?api_key=6696edaaf6da24b96f29b53d1d64419d&page=${nextPage}`
+      );
+    }
+  }, [searchDebounce, nextPage]);
+  useEffect(() => {
+    if (!data || !data.total_results) return;
+    setPageCount(Math.ceil(data.total_results / itemsPerPage));
+  }, [data, itemOffset]);
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % data.total_results;
+    setItemOffset(newOffset);
+    setNextPage(event.selected + 1);
+  };
   return (
-    <div className="page-container">
+    <div className="text-white page-container">
       <div className="flex mb-10">
         <div className="flex-1">
           <input
             type="text"
             name=""
             id=""
-            className="w-full p-4"
+            className="w-full p-4 text-black"
             placeholder="Search Film"
+            onChange={handleSearch}
           />
         </div>
         <button className="p-4 text-white bg-primary">
@@ -40,11 +71,34 @@ const MoviePages = () => {
           </svg>
         </button>
       </div>
+      {/* {loading && (
+        <div className="w-10 h-10 mx-auto border-4 border-t-4 rounded-full border-primary border-t-transparent animate-spin"></div>
+      )} */}
+      {loading && (
+        <div className="grid grid-cols-4 gap-10">
+          {new Array(itemsPerPage).fill(0).map(() => (
+            <MovieCardSkeleton key={v4()}></MovieCardSkeleton>
+          ))}
+        </div>
+      )}
       <div className="grid grid-cols-4 gap-5">
-        {movies.length > 0 &&
+        {!loading &&
+          movies.length > 0 &&
           movies.map((item) => (
             <MovieCard key={item.id} item={item}></MovieCard>
           ))}
+      </div>
+      <div className="mt-10">
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel="Next >"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={5}
+          pageCount={pageCount}
+          previousLabel="< Previous"
+          renderOnZeroPageCount={null}
+          className="pagination"
+        />
       </div>
     </div>
   );
