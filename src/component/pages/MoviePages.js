@@ -71,16 +71,11 @@ const MoviePages = () => {
           </svg>
         </button>
       </div>
-      {/* {loading && (
-        <div className="w-10 h-10 mx-auto border-4 border-t-4 rounded-full border-primary border-t-transparent animate-spin"></div>
-      )} */}
-      {loading && (
-        <div className="grid grid-cols-4 gap-10">
-          {new Array(itemsPerPage).fill(0).map(() => (
-            <MovieCardSkeleton key={v4()}></MovieCardSkeleton>
-          ))}
-        </div>
-      )}
+      <div className="grid grid-cols-4 gap-10">
+        {new Array(itemsPerPage).fill(0).map(() => (
+          <MovieCardSkeleton key={v4()}></MovieCardSkeleton>
+        ))}
+      </div>
       <div className="grid grid-cols-4 gap-5">
         {!loading &&
           movies.length > 0 &&
