@@ -5,12 +5,12 @@ import useSWR from "swr";
 
 const Banner = () => {
   const { data } = useSWR(
-    `https://api.themoviedb.org/3/movie/upcoming?api_key=6696edaaf6da24b96f29b53d1d64419d`,
+    `https://api.themoviedb.org/3/movie/popular?api_key=6696edaaf6da24b96f29b53d1d64419d`,
     fetcher
   );
   const movies = data?.results || [];
   return (
-    <section className="banner h-[550px] page-container mb-5 overflow-hidden">
+    <section className="banner  h-[550px] mb-5 overflow-hidden">
       <Swiper grabCursor={"true"}>
         {movies.length > 0 &&
           movies.map((item) => (

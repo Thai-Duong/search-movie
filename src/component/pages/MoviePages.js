@@ -42,19 +42,19 @@ const MoviePages = () => {
     setNextPage(event.selected + 1);
   };
   return (
-    <div className="text-white page-container">
+    <div className="mt-5 text-white page-container">
       <div className="flex mb-10">
-        <div className="flex-1">
+        <div className="flex-1 ">
           <input
             type="text"
             name=""
             id=""
-            className="w-full p-4 text-black"
+            className="w-full p-2 text-black "
             placeholder="Search Film"
             onChange={handleSearch}
           />
         </div>
-        <button className="p-4 text-white bg-primary">
+        <button className="p-2 text-white bg-primary">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

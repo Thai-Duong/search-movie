@@ -1,29 +1,24 @@
 import React from "react";
 import { useNavigate } from "react-router";
-import Button from "../button/Button";
 import LoadingSkeleton from "../loading/LoadingSkeleton";
 
 const MovieCard = ({ item }) => {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col h-full p-3 text-white rounded-lg bg-slate-800">
+    <div
+      onClick={() => navigate(`/movies/${item.id}`)}
+      className="relative w-full h-full text-white bg-slate-800"
+    >
       <img
         src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
         alt=""
-        className="w-full h-[400px] object-cover rounded-lg mb-5"
+        className="w-full h-[400px] object-cover block"
       />
-      <div className="flex flex-col flex-1">
-        <h3 className="mb-3 text-xl font-bold ">{item.title}</h3>
-        <div className="flex items-center justify-between mb-5">
-          <span>{new Date(item.release_date).getFullYear()}</span>
-          <span>{item.vote_average}</span>
-        </div>
-        <Button
-          className="bg-black"
-          onClick={() => navigate(`/movies/${item.id}`)}
-        >
-          Watch Now
-        </Button>
+      <h3 className="absolute  bottom-0 left-0 w-full p-2 text-lg font-bold bg-gradient-to-t  from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.5)]">
+        {item.title}
+      </h3>
+      <div className="absolute top-0 right-0 p-2 text-black bg-primary">
+        {item.vote_average}
       </div>
     </div>
   );
@@ -31,7 +26,7 @@ const MovieCard = ({ item }) => {
 export default MovieCard;
 export const MovieCardSkeleton = () => {
   return (
-    <div className="flex flex-col h-full p-3 text-white rounded-lg select-none movie-card bg-slate-800">
+    <div className="flex flex-col h-full p-3 text-white select-none movie-card bg-slate-800">
       <LoadingSkeleton
         width="100%"
         height="250px"
