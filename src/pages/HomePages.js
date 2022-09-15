@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
-import Banner from "../movie/Banner";
-import MovieList from "../movie/MovieList";
-
+import Banner from "../component/movie/Banner";
+import MovieList from "../component/movie/MovieList";
 const HomePages = () => {
   return (
     <Fragment>

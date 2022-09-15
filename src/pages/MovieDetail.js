@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
-import { fetcher } from "../../configure";
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
-import MovieCard from "../movie/MovieCard";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { fetcher } from "../configure";
+import MovieCard from "../component/movie/MovieCard";
 
 const MovieDetail = () => {
   const { movieId } = useParams();

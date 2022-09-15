@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import useSWR from "swr";
-import { fetcher } from "../../configure";
-import MovieCard, { MovieCardSkeleton } from "../movie/MovieCard";
-import useDebounce from "../hook/useDebounce";
+import { fetcher } from "../configure";
+import MovieCard from "../component/movie/MovieCard";
+import useDebounce from "../component/hook/useDebounce";
 import ReactPaginate from "react-paginate";
-import { v4 } from "uuid";
 const itemsPerPage = 20;
 const MoviePages = () => {
   const [pageCount, setPageCount] = useState(0);
@@ -71,11 +70,7 @@ const MoviePages = () => {
           </svg>
         </button>
       </div>
-      <div className="grid grid-cols-4 gap-10">
-        {new Array(itemsPerPage).fill(0).map(() => (
-          <MovieCardSkeleton key={v4()}></MovieCardSkeleton>
-        ))}
-      </div>
+
       <div className="grid grid-cols-4 gap-5">
         {!loading &&
           movies.length > 0 &&

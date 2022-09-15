@@ -2,7 +2,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import useSWR from "swr";
 import { fetcher } from "../../configure";
-import MovieCard, { MovieCardSkeleton } from "./MovieCard";
+import MovieCard from "./MovieCard";
 const MovieList = ({ type = "now_playing" }) => {
   const { data } = useSWR(
     `https://api.themoviedb.org/3/movie/${type}?api_key=6696edaaf6da24b96f29b53d1d64419d`,
