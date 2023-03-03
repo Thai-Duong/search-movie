@@ -22,7 +22,7 @@ const MovieCard = ({ item }) => {
       <div className="absolute top-0 right-0 p-2 text-black bg-primary">
         {item.vote_average}
       </div>
-      <Typography> {item.title}</Typography>
+      <Typography>{item.title}</Typography>
     </Card>
   );
 };

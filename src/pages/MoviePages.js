@@ -15,7 +15,7 @@ const MoviePages = () => {
   const [url, setUrl] = useState(
     `https://api.themoviedb.org/3/movie/popular?api_key=6696edaaf6da24b96f29b53d1d64419d&page=${nextPage}`
   );
-  const searchDebounce = useDebounce(search, 500);
+  const searchDebounce = useDebounce(search, 1000);
   const handleSearch = (e) => {
     setSearch(e.target.value);
   };
@@ -45,41 +45,14 @@ const MoviePages = () => {
   return (
     <div className="mt-5 text-white page-container">
       <div className="flex mb-10">
-        <div className="flex-1 ">
-          <Search
-            placeholder="Name of Movie"
-            allowClear
-            enterButton="Search"
-            size="large"
-            onChange={handleSearch}
-          />
-          {/* <input
-            type="text"
-            name=""
-            id=""
-            className="w-full p-2 text-black "
-            placeholder="Search Film"
-            onChange={handleSearch}
-          /> */}
-        </div>
-        {/* <button className="p-2 text-white bg-primary">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-            />
-          </svg>
-        </button> */}
+        <Search
+          placeholder="Name of Movie"
+          allowClear
+          enterButton="Search"
+          size="large"
+          onChange={handleSearch}
+        />
       </div>
-
       <div className="grid grid-cols-5 gap-5">
         {!loading &&
           movies.length > 0 &&

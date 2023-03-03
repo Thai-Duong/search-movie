@@ -49,11 +49,11 @@ const MovieDetail = () => {
           <p className="text-center leading-relaxed max-w-[600px] mx-auto mb-10">
             {data.overview}
           </p>
-          <MovieCredits></MovieCredits>
+          <MovieCredits />
         </div>
       </div>
-      <MovieVideos></MovieVideos>
-      <MovieSimilar></MovieSimilar>
+      <MovieVideos />
+      <MovieSimilar />
     </div>
   );
 };

@@ -22,7 +22,7 @@ const Footer = () => {
         <NavLink to="/">You must watch</NavLink>
         <NavLink to="/">Recent release</NavLink>
         <NavLink to="/">Top IMDB</NavLink>
-        <NavLink to="/">@DuongThai 2022</NavLink>
+        <NavLink to="/">@DuongThai 2023</NavLink>
       </Col>
     </Row>
   );

@@ -1,8 +1,7 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { fetcher } from "../../configure";
 import useSWR from "swr";
-import { Image } from "antd";
+import { fetcher } from "../../configure";
 
 const Banner = () => {
   const { data } = useSWR(
@@ -11,12 +10,12 @@ const Banner = () => {
   );
   const movies = data?.results || [];
   return (
-    <section className="banner  h-[550px] mb-5 overflow-hidden">
+    <section className="banner h-[550px] mb-5 overflow-hidden">
       <Swiper grabCursor={"true"}>
         {movies.length > 0 &&
           movies.map((item) => (
             <SwiperSlide key={item.id}>
-              <BannerItems item={item}></BannerItems>
+              <BannerItems item={item} />
             </SwiperSlide>
           ))}
       </Swiper>
@@ -36,17 +35,17 @@ function BannerItems({ item }) {
       <div className="absolute w-full text-white left-5 bottom-5">
         <h2 className="mb-3 text-3xl font-bold">
           {item.title}
-          <div className="flex items-center mt-3 gap-x-3">
+          {/* <div className="flex items-center mt-3 gap-x-3">
             <span className="px-4 py-2 border border-white rounded-md">
               Action
             </span>
             <span className="px-4 py-2 border border-white rounded-md">
               Action
-            </span>{" "}
+            </span>
             <span className="px-4 py-2 border border-white rounded-md">
               Action
             </span>
-          </div>
+          </div> */}
         </h2>
       </div>
     </div>

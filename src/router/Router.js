@@ -6,9 +6,9 @@ import MovieDetail from "../pages/MovieDetail";
 const Router = () => {
   return (
     <Routes>
-      <Route path="/" element={<HomePages />}></Route>
-      <Route path="/movies" element={<MoviePages />}></Route>
-      <Route path="/movies/:movieId" element={<MovieDetail />}></Route>
+      <Route path="/" element={<HomePages />} />
+      <Route path="/movies" element={<MoviePages />} />
+      <Route path="/movies/:movieId" element={<MovieDetail />} />
     </Routes>
   );
 };

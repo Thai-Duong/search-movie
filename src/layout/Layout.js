@@ -6,9 +6,9 @@ import Router from "../router/Router";
 const Layout = () => {
   return (
     <div>
-      <Header></Header>
-      <Router></Router>
-      <Footer></Footer>
+      <Header />
+      <Router />
+      <Footer />
     </div>
   );
 };

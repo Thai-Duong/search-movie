@@ -4,18 +4,18 @@ import MovieList from "../component/movie/MovieList";
 const HomePages = () => {
   return (
     <Fragment>
-      <Banner></Banner>
+      <Banner />
       <section className="pb-5 movie-layout page-container">
         <h2 className="mb-5 text-3xl font-bold text-white">Now Playing</h2>
-        <MovieList></MovieList>
+        <MovieList />
       </section>
       <section className="pb-5 movie-layout page-container">
         <h2 className="mb-5 text-3xl font-bold text-white">Top Rate</h2>
-        <MovieList type="popular"></MovieList>
+        <MovieList type="popular" />
       </section>
       <section className="pb-5 movie-layout page-container">
         <h2 className="mb-5 text-3xl font-bold text-white">Trending</h2>
-        <MovieList type="top_rated"></MovieList>
+        <MovieList type="top_rated" />
       </section>
     </Fragment>
   );
