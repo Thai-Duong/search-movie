@@ -4,6 +4,8 @@ import { fetcher } from "../configure";
 import MovieCard from "../component/movie/MovieCard";
 import useDebounce from "../component/hook/useDebounce";
 import ReactPaginate from "react-paginate";
+import { Input } from "antd";
+const { Search } = Input;
 const itemsPerPage = 20;
 const MoviePages = () => {
   const [pageCount, setPageCount] = useState(0);
@@ -44,16 +46,23 @@ const MoviePages = () => {
     <div className="mt-5 text-white page-container">
       <div className="flex mb-10">
         <div className="flex-1 ">
-          <input
+          <Search
+            placeholder="Name of Movie"
+            allowClear
+            enterButton="Search"
+            size="large"
+            onChange={handleSearch}
+          />
+          {/* <input
             type="text"
             name=""
             id=""
             className="w-full p-2 text-black "
             placeholder="Search Film"
             onChange={handleSearch}
-          />
+          /> */}
         </div>
-        <button className="p-2 text-white bg-primary">
+        {/* <button className="p-2 text-white bg-primary">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -68,15 +77,13 @@ const MoviePages = () => {
               d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
             />
           </svg>
-        </button>
+        </button> */}
       </div>
 
-      <div className="grid grid-cols-4 gap-5">
+      <div className="grid grid-cols-5 gap-5">
         {!loading &&
           movies.length > 0 &&
-          movies.map((item) => (
-            <MovieCard key={item.id} item={item}></MovieCard>
-          ))}
+          movies.map((item) => <MovieCard key={item.id} item={item} />)}
       </div>
       <div className="mt-10">
         <ReactPaginate

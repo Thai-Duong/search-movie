@@ -1,6 +1,7 @@
 import "./App.css";
 import "swiper/css";
 import Layout from "./layout/Layout";
+import "antd/dist/reset.css";
 function App() {
   return <Layout />;
 }

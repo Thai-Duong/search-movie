@@ -2,6 +2,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { fetcher } from "../../configure";
 import useSWR from "swr";
+import { Image } from "antd";
 
 const Banner = () => {
   const { data } = useSWR(
@@ -31,6 +32,7 @@ function BannerItems({ item }) {
         alt=""
         className="object-cover w-full h-full rounded-lg"
       />
+
       <div className="absolute w-full text-white left-5 bottom-5">
         <h2 className="mb-3 text-3xl font-bold">
           {item.title}

@@ -1,25 +1,29 @@
 import React from "react";
 import { useNavigate } from "react-router";
-
+import { Card, Typography } from "antd";
 const MovieCard = ({ item }) => {
   const navigate = useNavigate();
   return (
-    <div
+    <Card
       onClick={() => navigate(`/movies/${item.id}`)}
-      className="relative w-full h-full text-white bg-slate-800"
+      hoverable
+      style={{
+        width: 240,
+        height: 450,
+      }}
+      cover={
+        <img
+          alt="anh"
+          src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+        />
+      }
+      className="relative"
     >
-      <img
-        src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-        alt=""
-        className="w-full h-[400px] object-cover block"
-      />
-      <h3 className="absolute  bottom-0 left-0 w-full p-2 text-lg font-bold bg-gradient-to-t  from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.5)]">
-        {item.title}
-      </h3>
       <div className="absolute top-0 right-0 p-2 text-black bg-primary">
         {item.vote_average}
       </div>
-    </div>
+      <Typography> {item.title}</Typography>
+    </Card>
   );
 };
 export default MovieCard;

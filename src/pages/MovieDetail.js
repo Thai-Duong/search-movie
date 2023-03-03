@@ -29,6 +29,7 @@ const MovieDetail = () => {
           className="object-cover rounded-xl h-[500px] max-w-[300px]"
           alt=""
         />
+
         <div>
           <h1 className="mb-5 text-4xl font-bold text-center text-white">
             {data.title}

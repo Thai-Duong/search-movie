@@ -11,11 +11,11 @@ const MovieList = ({ type = "now_playing" }) => {
   const movies = data?.results || [];
   return (
     <div className="movies-list">
-      <Swiper grabCursor={"true"} spaceBetween={30} slidesPerView={"auto"}>
+      <Swiper grabCursor={"true"} spaceBetween={5} slidesPerView={"auto"}>
         {movies.length > 0 &&
           movies.map((item) => (
             <SwiperSlide key={item.id}>
-              <MovieCard item={item}></MovieCard>
+              <MovieCard item={item} />
             </SwiperSlide>
           ))}
       </Swiper>
